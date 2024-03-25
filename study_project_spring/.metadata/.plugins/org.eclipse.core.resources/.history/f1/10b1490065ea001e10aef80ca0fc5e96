@@ -1,0 +1,5 @@
+package study_spring.service;
+
+public class BlogService {
+
+}

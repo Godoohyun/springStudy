@@ -1,0 +1,12 @@
+package study_spring.domain;
+
+import org.springframework.security.core.userdetails.UserDetails;
+
+import jakarta.persistence.Table;
+import lombok.NoArgsConstructor;
+
+@Table(name = "users")
+@NoArgsConstructor
+public class User implements UserDetails{
+	
+}

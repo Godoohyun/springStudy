@@ -1,0 +1,19 @@
+package study_spring.service;
+
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+import study_spring.domain.Article;
+import study_spring.dto.AddArticleRequest;
+import study_spring.repository.BlogRepository;
+
+@RequiredArgsConstructor // 
+@Service
+public class BlogService {
+	
+	private final BlogRepository blogRepository;
+	
+	public Article save(AddArticleRequest request) {
+		return blogRepository.save(request.ToEntity());
+	}
+}
