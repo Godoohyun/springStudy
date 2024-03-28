@@ -1,0 +1,38 @@
+package study_spring.config.jwt;
+
+import java.time.Duration;
+import java.util.Date;
+
+import org.springframework.stereotype.Service;
+
+import io.jsonwebtoken.Header;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.RequiredArgsConstructor;
+import study_spring.domain.User;
+
+@RequiredArgsConstructor
+@Service
+public class TokenProvider {
+	
+	private final JwtProperties jwtProperties;
+	
+	public String generateToken(User user, Duration expiredAt) {
+		Date now = new Date();
+		return makeToken(new Date(now.getTime() + expiredAt.toMillis()), user);
+	}
+
+	private String makeToken(Date expriy, User user) {
+		Date now = new Date();
+		
+		return Jwts.builder()
+				.setHeaderParam(Header.TYPE, Header.JWT_TYPE)  	// 헤더타입과 jwt 타입 세팅		
+				.setIssuer(jwtProperties.getIssure()) 			// Issure 설정값 세팅
+				.setIssuedAt(now)								// 발급시간 세팅 (현재시간) 
+				.setExpiration(expriy)							// 만료시간 세팅
+				.setSubject(user.getEmail())
+				.claim("id", user.getId())
+				.signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
+				.compact();
+	}
+}

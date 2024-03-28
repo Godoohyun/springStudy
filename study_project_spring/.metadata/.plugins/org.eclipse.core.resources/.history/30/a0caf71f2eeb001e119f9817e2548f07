@@ -1,0 +1,5 @@
+package study_spring.controller;
+
+public class UserApiController {
+
+}

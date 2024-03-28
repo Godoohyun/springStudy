@@ -1,0 +1,6 @@
+package study_spring.config.jwt;
+
+
+public class JwtFactory {
+
+}

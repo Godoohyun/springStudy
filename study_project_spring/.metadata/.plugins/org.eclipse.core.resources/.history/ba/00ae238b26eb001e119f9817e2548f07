@@ -1,0 +1,38 @@
+package study_spring.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+import lombok.RequiredArgsConstructor;
+import study_spring.service.UserDetailService;
+
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+
+@RequiredArgsConstructor
+@Configuration
+public class WebSecurityConfig {
+	
+	private final UserDetailService userService;
+	
+	// 인증,인가 없이 접속가능 예를 들면 API endPoint로 예외처리
+	@Bean
+	public WebSecurityCustomizer configure() {
+		return (web) -> web.ignoring()
+				.requestMatchers(toH2Console()) // toH2Console  springframework.boot.autoconfigure 에서 임포트
+				.requestMatchers("/static/**");
+	}
+
+	// configure 에서 예외처리 하지 않은 요청에 대해 필터처리
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		
+		return http
+				.authorizeHttpRequests()
+				.re
+	}
+	
+}

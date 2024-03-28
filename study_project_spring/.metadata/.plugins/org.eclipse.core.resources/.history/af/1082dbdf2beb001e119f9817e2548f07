@@ -1,0 +1,5 @@
+package study_spring.dto;
+
+public class AddUserRequest {
+
+}

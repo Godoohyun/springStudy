@@ -1,0 +1,27 @@
+package study_spring.config.jwt;
+
+import static java.util.Collections.emptyMap;
+
+import java.time.Duration;
+import java.util.Date;
+import java.util.Map;
+
+import lombok.Builder;
+import lombok.Getter; // 직접 임포트
+
+@Getter
+public class JwtFactory {
+	private String subject = "test@email.com";
+	private Date issuedAt = new Date();
+	private Date expiratrion = new Date(new Date().getTime() + Duration.ofDays(14).toMillis()); // 새로은 시간에 14일 기간 설정 날짜
+	private Map<String, Object> claims = emptyMap(); 
+	
+	@Builder
+	public JwtFactory(String subject, Date issuedAt, Date expiration, Map<String, Object> claims) {
+		this.subject = subject != null ? subject : this.subject;
+		this.issuedAt = issuedAt != null ? issuedAt : this.issuedAt;
+		this.expiratrion = expiratrion != null ? expiratrion : this.expiratrion;
+		this.claims = claims != null ? claims : this.claims;
+	}
+	
+}

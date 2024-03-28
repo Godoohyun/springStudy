@@ -1,0 +1,17 @@
+package study_spring.config.jwt;
+
+import java.time.Duration;
+import java.util.Date;
+import java.util.Map;
+
+import lombok.Getter;
+
+import static java.util.Collections.emptyMap; // 직접 임포트
+
+@Getter
+public class JwtFactory {
+	private String subject = "test@email.com";
+	private Date issurAt = new Date();
+	private Date expiratrion = new Date(new Date().getTime() + Duration.ofDays(14).toMillis()); // 새로은 시간에 14일 기간 설정 날짜
+	private Map<String, Object> claims = emptyMap();
+}

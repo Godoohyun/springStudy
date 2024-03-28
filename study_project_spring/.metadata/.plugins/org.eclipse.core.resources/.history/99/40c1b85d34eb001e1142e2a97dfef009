@@ -1,0 +1,23 @@
+package study_spring.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import lombok.RequiredArgsConstructor;
+import study_spring.dto.AddUserRequest;
+import study_spring.service.UserService;
+
+@RequiredArgsConstructor
+@Controller
+public class UserApiController {
+
+    private final UserService userService;
+
+    @PostMapping("/user")
+    public String signup(AddUserRequest request) {
+    	System.out.println(request);
+        userService.save(request);
+        return "redirect:/login";
+    }
+    
+}

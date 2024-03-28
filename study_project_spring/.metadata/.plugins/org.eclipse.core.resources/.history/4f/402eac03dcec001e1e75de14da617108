@@ -1,0 +1,18 @@
+package study_spring.config.jwt;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import study_spring.repository.UserRepository;
+
+
+@SpringBootTest
+public class TokenProviderTest {
+	@Autowired
+	private TokenProvider tokenProvider;
+//	@Autowired // 이게 빈주입 받는것도 아닌거 같은데 필요한가?
+	private UserRepository userRepository; // Repository는 자동 빈 등록인거 같은데 @Autowired로 빈주입을 못받고 왜 임포트 해야하는가?
+	@Autowired
+	private JwtProperties jwtProperties; 
+	
+}
