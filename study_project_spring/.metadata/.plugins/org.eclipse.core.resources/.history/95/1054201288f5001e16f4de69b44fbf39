@@ -1,0 +1,5 @@
+package study_spring.config.oauth;
+
+public class OAuth2UserCustomService {
+
+}
