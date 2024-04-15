@@ -35,7 +35,7 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "", unique = true)
+    @Column(name = "nickname", unique = true)
     private String nickname;
     
     @Builder
